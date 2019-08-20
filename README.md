@@ -1,5 +1,5 @@
 ## Kart Challenge
-[log print](print.png)
+![log print](print.png)
 
 PROBLEMA
 ========
