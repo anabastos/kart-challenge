@@ -43,26 +43,20 @@ const getDurationMiliSecToStr = (time) => {
   return `${pad(min, 2)}:${pad(sec, 2)}.${pad(mili, 3)}`
 }
 
-const getDurationInMiliSec = (str) => {
+const getDurationStrToMiliSec = (str) => {
   const time = str
     .split(/\.|:/)
     .map(n => parseInt(n, 10));
   return ((time[0] * 60) + time[1]) * 1000 + time[2]
 }
 
-const getPilotTurnData = (turnList) => {
-  const time = getValidDate(turnList[0]);
-  const duration = getDurationInMiliSec(turnList[3]);
-  const velocity = parseFloat(turnList[4].replace(',', '.'));
-
-  return { time, duration, velocity }
-}
 
 export {
   splitEvery,
   exists,
   getAverage,
   getDurationMiliSecToStr,
-  getPilotTurnData,
   indexOfObjectInArr,
+  getDurationStrToMiliSec,
+  getValidDate,
 }

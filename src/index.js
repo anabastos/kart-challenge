@@ -5,8 +5,9 @@ import {
   exists,
   getAverage,
   getDurationMiliSecToStr,
-  getPilotTurnData,
   indexOfObjectInArr,
+  getDurationStrToMiliSec,
+  getValidDate,
 } from './helpers';
 
 import {
@@ -23,7 +24,7 @@ const fileToList = (fileName) => {
       .split(/\s\s\s*|\n|\t/)
       .slice(5);
   } catch (e) {
-    error('Error:', e.stack);
+    error(`Error: ${e.stack}`);
   }
 }
 
@@ -34,9 +35,9 @@ const printResults = (file) => {
   const bestTurn = obj.bestTurn
   delete obj.bestTurn
 
-  bgYellow('\n_________________________\n     RESULTADOS          ')
+  bgYellow(`\n_________________________\n       RESULTADOS 🏁     
+_________________________\n`)
   Object.keys(obj).forEach((pilot) => {
-    bgYellow('_________________________')
     keyValueLog('POSICAO', indexOfObjectInArr(obj[pilot].name, ranking) + 1)
     keyValueLog('CODIGO DO PILOTO', pilot);
     keyValueLog('NOME DO PILOTO', obj[pilot].name);
@@ -47,22 +48,23 @@ const printResults = (file) => {
       `${getDurationMiliSecToStr(obj[pilot].bestDuration)} min`);
     keyValueLog('MEDIA DE VELOCIDADE',
       `${getAverage(obj[pilot].listOfVelocities)} KM/H`);
+    bgYellow('\n-------------------------\n')
   })
 
-  bgYellow(`\n________________________\n     MELHOR VOLTA       
-________________________`)
+  bgYellow(`\n________________________\n     MELHOR VOLTA 🏁    
+________________________\n`)
   keyValueLog('PILOTO', bestTurn.pilot);
   keyValueLog('DURACAO', getDurationMiliSecToStr(bestTurn.time));
+  bgYellow('________________________')
 }
 
 const getRanking = (groupedObj) => Object.keys(groupedObj)
   .reduce((acc, pilot) => exists(groupedObj[pilot].lastTurn)
-    ? [
-      {
-        duration: groupedObj[pilot].lastTurn,
-        name: groupedObj[pilot].name
-      },
-      ...acc,
+    ? [{
+      duration: groupedObj[pilot].lastTurn,
+      name: groupedObj[pilot].name
+    },
+    ...acc,
     ]
     : acc, [])
   .sort((a, b) => (a.duration.getTime() > b.duration.getTime()) ? 1 : -1)
@@ -122,5 +124,13 @@ const getDefaultCalculatedData = turnData => ({
   listOfVelocities: [turnData.velocity],
   lastTurn: turnData.time,
 })
+
+const getPilotTurnData = (turnList) => {
+  const time = getValidDate(turnList[0]);
+  const duration = getDurationStrToMiliSec(turnList[3]);
+  const velocity = parseFloat(turnList[4].replace(',', '.'));
+
+  return { time, duration, velocity }
+}
 
 printResults('input.txt');
