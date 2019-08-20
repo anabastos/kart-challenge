@@ -1,0 +1,22 @@
+{
+  "name": "kart-test",
+  "version": "1.0.0",
+  "description": "Test gym pass",
+  "main": "src/index.js",
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/node": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "babel-eslint": "10.0.2",
+    "eslint": "6.1.0"
+  },
+  "scripts": {
+    "start": "babel-node -- ./src/index.js"
+  },
+  "author": "Ana Luiza Bastos<analpbastos@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2"
+  }
+}

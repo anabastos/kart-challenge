@@ -1,0 +1,37 @@
+## Tecnologias utilizadas ##
+
+- Node.js(Versão atualizada)
+    - Server-side javascript para ler arquivos e lidar com dados
+- Yarn
+    - Gerenciador de pacotes
+- Babel
+    - Transpilador de código javascript para compatibilidade
+- Eslint
+    - Padronização de código
+
+## Requisitos ##
+Ter instalado uma versão atualizada do Node.js(https://nodejs.org/en/)
+
+
+## Instalação ##
+
+- Passo 1:
+
+Instalar yarn globalmente no terminal
+``
+npm i -g yarn
+`` 
+
+- Passo 2:
+
+Rodar no terminal `yarn` para instalar dependências
+``
+yarn
+``
+
+- Passo 3:
+
+Rodar o script node
+``
+yarn start
+``
