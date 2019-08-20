@@ -40,13 +40,13 @@ const printResults = (file) => {
     keyValueLog('POSICAO', indexOfObjectInArr(obj[pilot].name, ranking) + 1)
     keyValueLog('CODIGO DO PILOTO', pilot);
     keyValueLog('NOME DO PILOTO', obj[pilot].name);
-    keyValueLog('QTD DE VOLTAS COMPLETADAS', obj[pilot].nTurns);
+    keyValueLog('QTD DE VOLTAS COMPLETAS', obj[pilot].nTurns);
     keyValueLog('TEMPO TOTAL DE PROVA',
       `${getDurationMiliSecToStr(obj[pilot].totalDuration)} min`);
-    keyValueLog('TEMPO TOTAL DE PROVA',
+    keyValueLog('DURACAO DA MELHOR VOLTA',
       `${getDurationMiliSecToStr(obj[pilot].bestDuration)} min`);
     keyValueLog('MEDIA DE VELOCIDADE',
-      `${getAverage(obj[pilot].listOfVelocities)} Km/h`);
+      `${getAverage(obj[pilot].listOfVelocities)} KM/H`);
   })
 
   bgYellow(`\n________________________\n     MELHOR VOLTA       
